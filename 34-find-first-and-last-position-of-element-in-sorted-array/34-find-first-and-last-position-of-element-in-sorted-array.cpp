@@ -1,18 +1,18 @@
 class Solution {
 public:
     vector<int> searchRange(vector<int>& nums, int target) {
-       vector<int> arr,farr;
+       vector<int> arr,farr(2,-1);
        for(int i=0;i<nums.size();i++){
           if(nums.at(i)==target){
               arr.push_back(i);
           }
        }
        if(arr.size()==0){
-           farr.push_back(-1);
-           farr.push_back(-1);
+           return farr;
        }else{
-           farr.push_back(arr.at(0));
-           farr.push_back(arr.at(arr.size()-1));
+           farr.at(0)=arr.at(0);
+           farr.at(1)=arr.at(arr.size()-1);
+           return farr;
        }
         return farr;
     }
