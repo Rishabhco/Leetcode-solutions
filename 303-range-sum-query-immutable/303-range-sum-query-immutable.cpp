@@ -1,18 +1,19 @@
 class NumArray {
 public:
     NumArray(vector<int>& nums) {
-        // for(int i=0;i<nums.size();i++){
-        //     num.push_back(nums.at(i));
-        // }
-        num=nums;
+        num.push_back(nums.at(0));
+        cout<<num.at(0)<<" ";
+        for(int i=1;i<nums.size();i++){
+            num.push_back(nums.at(i)+num.at(i-1));
+            cout<<num.at(i)<<" ";
+        }
     }
     
     int sumRange(int left, int right) {
-        int sum=0;
-        for(int i=left;i<=right;i++){
-            sum+=num.at(i);
-        }
-        return sum;
+        if(left==0)
+            return num.at(right);
+        else
+            return num.at(right)-num.at(left-1);
     }
 private:
     vector<int> num;
