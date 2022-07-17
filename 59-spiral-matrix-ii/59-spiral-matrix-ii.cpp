@@ -14,14 +14,14 @@ public:
                 i++;
             }
             right--;
-            if(top<=bottom){
+            if(left<=right){
                 for(int j=right;j>=left;j--){
                     vec[bottom][j]=i;
                     i++;
                 }
                 bottom--;
             }
-            if(left<=right){
+            if(top<=bottom){
                 for(int j=bottom;j>=top;j--){
                     vec[j][left]=i;
                     i++;
