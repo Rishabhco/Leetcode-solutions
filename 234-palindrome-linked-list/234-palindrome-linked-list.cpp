@@ -11,15 +11,37 @@
 class Solution {
 public:
     bool isPalindrome(ListNode* head) {
-        vector<int> vec;
-        while(head){
-            vec.push_back(head->val);
-            head=head->next;
+        // vector<int> vec;
+        // while(head){
+        //     vec.push_back(head->val);
+        //     head=head->next;
+        // }
+        // for(int i=0;i<vec.size();i++){
+        //     if(vec[i]!=vec[vec.size()-i-1]){
+        //         return false;
+        //     }
+        // }
+        // return true;
+        
+        ListNode*hare=head,*tor=head,*prev=nullptr;
+        while(hare&&hare->next){
+            hare=hare->next->next;
+            ListNode*temp=tor->next;
+            tor->next=prev;
+            prev=tor;
+            tor=temp;
         }
-        for(int i=0;i<vec.size();i++){
-            if(vec[i]!=vec[vec.size()-i-1]){
+        
+        if(hare){
+            tor=tor->next;
+        }
+        while(tor){
+            // cout<<tor->val;
+            if(tor->val!=prev->val){
                 return false;
             }
+            tor=tor->next;
+            prev=prev->next;
         }
         return true;
     }
