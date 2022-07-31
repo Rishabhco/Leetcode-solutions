@@ -1,30 +1,27 @@
 class NumArray {
     public:
-        vector<int>v;
+        vector<int> arr;
         int sum;
         NumArray(vector<int>& nums) {
-            v=nums;
-            sum=0;
-            for(int i=0;i<nums.size();i++){
-                sum+=nums[i];
-            }
+            arr = nums;
+            sum = accumulate(arr.begin(),arr.end(),0);
         }
     
         void update(int index, int val) {
-            sum-=v[index];   
-            v[index]=val;
-            sum+=val;
+            sum -= arr[index];
+            arr[index] = val;
+            sum += arr[index];
         }
     
         int sumRange(int left, int right) {
-            int res=sum; 
-            for(int i=0;i<left;i++){    
-                res-=v[i];
-            }
-            for(int i=right+1;i<v.size();i++){
-                res-=v[i];
-            }
-            return res;
+            int ans = sum ;
+            for(int i = 0; i<left;i++){
+                ans -= arr[i];
+            } 
+            for(int i = right+1; i<arr.size();i++){
+                ans -= arr[i];
+            } 
+            return ans;
         }
 };
 
